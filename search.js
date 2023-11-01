@@ -7,6 +7,9 @@ const form = document.getElementById("searchForm")
 const token = localStorage.getItem('userInfo');
 const tableBody = document.getElementById("tableBody");
 
+// const locate = document.getElementById("search").value
+
+
 
 
 form.addEventListener("submit",(e) => {
@@ -35,36 +38,8 @@ form.addEventListener("submit",(e) => {
         tableBody.innerHTML = "";
 
 
-        if (data.drivingSchools.length !== 0) {
-            console.log('driving is empty');
-
-
-            data.drivingSchools.forEach(item => {
-                const row = document.createElement("tr");
-            
-                const schoolLocationCell = document.createElement('td');
-                schoolLocationCell.textContent = item.location.name; // Access the 'name' property within 'location'
-            
-                const schoolNameCell = document.createElement('td');
-                schoolNameCell.textContent = item.name_of_drivingSchool;
-            
-                const schoolAddressCell = document.createElement('td');
-                schoolAddressCell.textContent = item.address;
-            
-                row.appendChild(schoolLocationCell); // Append the location name cell
-                row.appendChild(schoolNameCell);
-                row.appendChild(schoolAddressCell);
-            
-                tableBody.appendChild(row);
-            });
-            
-
-
-
-
-
-        }else if (data.locations.length !== 0) {
-            console.log('location is empty');
+        if (data.locations.length !== 0) {
+            console.log(data.locations);
 
 
             data.locations.forEach(item => {
@@ -74,19 +49,45 @@ form.addEventListener("submit",(e) => {
                 nameCell.textContent = item.name;
             
                 // Append the location's name to the row
-                row.appendChild(nameCell);
-            
+                
                 item.driving_schools.forEach(school => {
+
+                    // console.log(school.weburl);
                     
                     const schoolNameCell = document.createElement('td');
                     schoolNameCell.textContent = school.name_of_drivingSchool;
-            
+                    
                     const schoolAddressCell = document.createElement('td');
                     schoolAddressCell.textContent = school.address;
-            
-                   
+                    
+                    
+                    const schoolWebUrlCell = document.createElement('td');
+                    
+                    // if (typeof item.webUrl === 'string') {
+                        const schoolWebUrl = document.createElement('a');
+                        schoolWebUrl.href = school.weburl;
+                        schoolWebUrl.textContent = 'Visit Website';
+                        schoolWebUrl.target = '_blank'; // Open the link in a new tab
+
+                        schoolWebUrlCell.appendChild(schoolWebUrl);
+
+
+                        // schoolWebUrlCell.appendChild(schoolWebUrl);
+                    // }
+
+
+                    
+                    const schoolPhoneCell = document.createElement('td');
+                    schoolPhoneCell.textContent = school.phone;
+                    
+                    
+                    
+                    row.appendChild(nameCell);
                     row.appendChild(schoolNameCell);
                     row.appendChild(schoolAddressCell);
+                    row.appendChild(schoolPhoneCell);
+                    row.appendChild(schoolWebUrlCell);
+
                 });
             
                 // Append the row to the table
@@ -94,7 +95,17 @@ form.addEventListener("submit",(e) => {
             });
             
 
-            
+
+
+
+
+        }
+        else if (data.locations.length == 0) {
+            // console.log(locate);
+
+
+
+            alert('no driving school in that location')
             
         }
 
