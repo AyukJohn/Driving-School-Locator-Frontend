@@ -1,6 +1,8 @@
 // this is for sending async data to the server and receiving same from the server
 
 
+
+
 const form = document.getElementById("registrationForm")
 
 const fullName = document.getElementById("fullName");
@@ -30,7 +32,6 @@ form.addEventListener("submit",(e) => {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-
             'Content-Type': 'application/json'
 
         },
@@ -38,8 +39,16 @@ form.addEventListener("submit",(e) => {
     })
     .then(response => response.json())
     .then(data => {
+
         // Handle the API response here (e.g., show a success message or error message)
-        console.log(data);
+
+        // console.log(data.message);
+
+        if (data.message){
+            window.location.href = 'login.html';
+            // window.location.replace('login.html');
+        }
+
     })
     .catch(error => {
         console.error('Error:', error);

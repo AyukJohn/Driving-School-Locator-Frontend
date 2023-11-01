@@ -6,7 +6,22 @@
     <link rel="stylesheet" href="style.css">
      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
      <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"rel="stylesheet"/>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Location-Base driving school mgt system</title>
+
+
+
+    <script>
+      // Check if the user is authenticated
+      const user = localStorage.getItem('userInfo');
+
+      if (!user) {
+          // User is not authenticated, redirect to the login page
+          window.location.replace('login.html');
+      }
+  </script>
+
+
 </head>
 <body>
     <!-- nav bar -->
@@ -19,7 +34,15 @@
         </div>
         <div class="hidden sm:flex sm:items-center">
           <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"></a>
-          <a href="#" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Driving Forum</a>
+          <!-- <a href="#" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Driving Forum</a> -->
+
+          <!-- <a href="#" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Driving Forum</a> -->
+
+          
+            <!-- Add the logout button -->
+            <button id="logoutButton">Logout</button>
+
+
         </div>
 
         <div class="sm:hidden cursor-pointer">
@@ -34,18 +57,63 @@
 <!-- end of navbar -->
 
 <div class="min-h-1 bg-gray-100 flex justify-center items-center">
-	<div class="container mx-auto bg-indigo-500 rounded-lg p-5">
-		<form>
+	<div class="container-fluid mx-auto bg-indigo-500 rounded-lg p-5">
+		<form id="searchForm">
 			<h1 class="text-center font-bold text-white text-2xl"><i class='bx bx-current-location'></i> Search for a driving school close to you!</label>
 				<div class="sm:flex items-center bg-white mt-5 rounded-lg overflow-hidden px-2 py-1 justify-between">
-					<input class="text-base text-gray-400 flex-grow outline-none px-2 " type="text" placeholder="Search with your location" />
+					<input class="text-base text-gray-400 flex-grow outline-none px-2" id="search" type="text" placeholder="Search with location or with Name of Driving School"/>
 					<div class="ms:flex items-center px-2 rounded-lg space-x-4 mx-auto ">
-						<input class="text-base text-gray-900 bg-indigo-200 p-1 border-gray-900 rounded-lg flex-grow px-2 " type="text" placeholder="Which city are in?" />
+						<!-- <input class="text-base text-gray-900 bg-indigo-200 p-1 border-gray-900 rounded-lg flex-grow px-2 " type="text" placeholder="Which city are in?" /> -->
 						<button class="bg-indigo-500 text-white text-base rounded-lg px-4 py-2 font-thin">Search</button>
 					</div>
 				</div>
 		</form>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+    <div class="container">
+
+
+      <table class="table">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">location</th>
+            <th scope="col">Name Of Driving School</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody  id="tableBody">
+          
+
+
+        </tbody>
+      </table>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="logout.js"></script>
+    <script src="search.js"></script>
+
 </body>
 </html>
